@@ -13,12 +13,8 @@ GLfloat vertices[] = {
 	+0.5f, -0.5f, +5.0f,
 	+0.5f, +0.5f, +5.0f,
 	-0.5f, +0.5f, +5.0f,
-	-0.5f, -0.5f, -5.0f,
-	+0.5f, -0.5f, -5.0f,
-	+0.5f, +0.5f, -5.0f,
-	-0.5f, +0.5f, -5.0f,
 };
-GLuint vCount = 8 * 3;
+GLuint vCount = 4 * 3; // 8 * 3;
 
 GLint indices[] = {
     0, 2, 1,
