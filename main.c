@@ -1,10 +1,5 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
-#ifdef __APPLE__
-#include <OpenGL/GL.h>
-#else
-#include <GL/gl.h>
-#endif
 
 extern GLboolean glInit();
 extern void glDraw(int windowW, int windowH, int cursorX, int cursorY);

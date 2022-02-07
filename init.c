@@ -1,12 +1,5 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
-#ifdef __APPLE__
-#include <OpenGL/GL.h>
-#include <OpenGL/GLext.h>
-#else
-#include <GL/gl.h>
-#include <GL/glext.h>
-#endif
 
 #define DECL(type, name) type name;
 #define ODECL(type, name) type name;

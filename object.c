@@ -1,12 +1,5 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
-#ifdef __APPLE__
-#include <OpenGL/GL.h>
-#include <OpenGL/GLext.h>
-#else
-#include <GL/gl.h>
-#include <GL/glext.h>
-#endif
 
 GLfloat vertices[] = {
 	-0.5f, -0.5f, +5.0f,

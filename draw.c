@@ -1,13 +1,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
-#ifdef __APPLE__
-#include <OpenGL/GL.h>
-#else
-#include <GL/gl.h>
-#endif
 
-#define DECL(type, name) type name;
-#define ODECL(type, name) type name;
+#define DECL(type, name) extern type name;
+#define ODECL(type, name) extern type name;
 #include "exts.h"
 #undef DECL
 #undef ODECL
