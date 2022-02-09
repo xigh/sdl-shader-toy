@@ -16,9 +16,5 @@
 layout(location = 0) in vec2 posAttr;
 
 void main() {
-    // if (gl_VertexID == 1) {
-    //     gl_Position = vec4(0.0, 0.0, 0.0, 1.0);
-    //     return;
-    // }
-    gl_Position = vec4(posAttr*2, 0.0, 1.0);
+    gl_Position = vec4(posAttr, 0.0, 1.0);
 }

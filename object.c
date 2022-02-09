@@ -2,10 +2,10 @@
 #include <SDL2/SDL_opengl.h>
 
 GLfloat vertices[] = {
-	-0.5f, -0.5f, +5.0f,
-	+0.5f, -0.5f, +5.0f,
-	+0.5f, +0.5f, +5.0f,
-	-0.5f, +0.5f, +5.0f,
+	-1.f, -1.f,
+	+1.f, -1.f,
+	+1.f, +1.f,
+	-1.f, +1.f,
 };
 GLuint vCount = 4 * 3; // 8 * 3;
 

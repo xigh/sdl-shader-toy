@@ -201,7 +201,7 @@ GLboolean glInit(GLchar *shaderName) {
     glUseProgram(shaderProgID);
 
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, NULL);
 
     uResolution = glGetUniformLocation(shaderProgID, "iResolution");
     if (uResolution < 0) {

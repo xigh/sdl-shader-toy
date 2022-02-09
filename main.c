@@ -24,12 +24,11 @@ int main(int argc, char **argv)
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-    int windowS = 60;
-    int windowW = windowS * 16;
-    int windowH = windowS * 9;
+    int windowW = 800;
+    int windowH = 800;
     int windowF = SDL_WINDOW_OPENGL|SDL_WINDOW_SHOWN;
-    int cursorX = 100;
-    int cursorY = 100;
+    int cursorX = windowW / 2;
+    int cursorY = windowH / 2;
 
     win = SDL_CreateWindow("SDL OpenGL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
                            windowW, windowH, windowF);
@@ -190,7 +189,9 @@ int main(int argc, char **argv)
             }
         }
 
-        glDraw(0.0, windowW, windowH, cursorX, cursorY);
+        GLfloat time = SDL_GetTicks();
+        time = time/1000;
+        glDraw(time, windowW, windowH, cursorX, cursorY);
         SDL_GL_SwapWindow(win);
     }
 
