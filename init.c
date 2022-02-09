@@ -19,6 +19,9 @@ GLuint shaderProgID = 0;
 GLuint vaoID = 0;
 GLuint vboID = 0;
 GLuint eboID = 0;
+GLint uResolution = -1;
+GLint uMouse = -1;
+GLint uTime = -1;
 
 void APIENTRY openglCallbackFunction(
     GLenum source, GLenum type, GLuint id, GLenum severity,
@@ -114,7 +117,7 @@ GLboolean isProgramLinked(GLuint programID) {
 	return GL_TRUE;
 }
 
-GLboolean glInit() {
+GLboolean glInit(GLchar *shaderName) {
     const GLubyte *vendor = glGetString(GL_VENDOR);
     const GLubyte *renderer = glGetString(GL_RENDERER);
     const GLubyte *version = glGetString(GL_VERSION);
@@ -160,14 +163,14 @@ GLboolean glInit() {
         return GL_FALSE;
     }
 
-    const GLchar *fragShaderText = (const GLchar *) loadFile("tri.frag");
+    const GLchar *fragShaderText = (const GLchar *) loadFile(shaderName);
     if (fragShaderText == NULL) {
         return GL_FALSE;
     }
     GLuint fragShaderID = glCreateShader(GL_FRAGMENT_SHADER);
     glShaderSource(fragShaderID, 1, &fragShaderText, NULL);
     glCompileShader(fragShaderID);
-    if (!isShaderCompiled(fragShaderID, "tri.frag")) {
+    if (!isShaderCompiled(fragShaderID, shaderName)) {
         glDeleteShader(vertShaderID);
         glDeleteShader(fragShaderID);
         return GL_FALSE;
@@ -199,6 +202,19 @@ GLboolean glInit() {
 
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+
+    uResolution = glGetUniformLocation(shaderProgID, "iResolution");
+    if (uResolution < 0) {
+        SDL_Log("shading:  could not find iResolution uniform\n");
+    }
+    uMouse = glGetUniformLocation(shaderProgID, "iMouse");
+    if (uResolution < 0) {
+        SDL_Log("shading:  could not find iMouse uniform\n");
+    }
+    uTime = glGetUniformLocation(shaderProgID, "iTime");
+    if (uResolution < 0) {
+        SDL_Log("shading:  could not find iTime uniform\n");
+    }
 
     glUseProgram(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);

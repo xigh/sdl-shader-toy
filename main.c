@@ -1,13 +1,18 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
 
-extern GLboolean glInit();
-extern void glDraw(int windowW, int windowH, int cursorX, int cursorY);
+extern GLboolean glInit(GLchar *shaderName);
+extern void glDraw(float time, int windowW, int windowH, int cursorX, int cursorY);
 
-int main()
+int main(int argc, char **argv)
 {
     SDL_Window *win;
     SDL_GLContext ctx;
+
+    char *shaderName = "shaders/colors.frag";
+    if (argc > 1) {
+        shaderName = argv[1];
+    }
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     {
@@ -36,7 +41,7 @@ int main()
 
     ctx = SDL_GL_CreateContext(win);
 
-    if (!glInit())
+    if (!glInit(shaderName))
         return EXIT_FAILURE;
 
     // SDL_ShowCursor(SDL_DISABLE);
@@ -185,7 +190,7 @@ int main()
             }
         }
 
-        glDraw(windowW, windowH, cursorX, cursorY);
+        glDraw(0.0, windowW, windowH, cursorX, cursorY);
         SDL_GL_SwapWindow(win);
     }
 

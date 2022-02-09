@@ -12,12 +12,16 @@ extern GLuint vaoID;
 extern GLuint vboID;
 extern GLuint eboID;
 
+extern GLint uResolution;
+extern GLint uMouse;
+extern GLint uTime;
+
 extern GLfloat vertices[];
 extern GLuint vCount;
 extern GLint indices[];
 extern GLuint iCount;
 
-void glDraw(int windowW, int windowH, int cursorX, int cursorY) {
+void glDraw(float time, int windowW, int windowH, int cursorX, int cursorY) {
     glViewport(0, 0, windowW, windowH);
 
     glEnable(GL_CULL_FACE);
@@ -31,6 +35,10 @@ void glDraw(int windowW, int windowH, int cursorX, int cursorY) {
     glUseProgram(shaderProgID);
     glBindBuffer(GL_ARRAY_BUFFER, vboID);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, eboID);
+
+    if (uTime >= 0) glUniform1f(uTime, (GLfloat)(time));
+    if (uResolution >= 0) glUniform2f(uResolution, (GLfloat)(windowW), (GLfloat)(windowH));
+    if (uMouse >= 0) glUniform2f(uMouse, (GLfloat)(cursorX), (GLfloat)(cursorY));
 
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, (void*)(0));
 
